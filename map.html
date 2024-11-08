@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link rel="icon" type="image/png" href="Images/fevicon.png">
+<head>
+    <meta charset="UTF-8">
+    <title>Google Maps Directions</title>
+    <style>
+        #map {
+            height: 1500px;
+            width: 100%;
+        }
+
+        #back-button {
+            position: absolute;
+            top: 70px;
+            left: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        /* Style for the back button on hover */
+        #back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <button id="back-button" onclick="goToIndex()">Back to Index</button>
+    <script>
+        // Replace with your own API key
+        const apiKey = 'AIzaSyAQMHa6FlzJt4FubHeP5UIoT6_5kZaUUJE';
+
+                // JavaScript function to navigate back to index.html
+                function goToIndex() {
+            window.location.href = "index.html";
+        }
+
+
+        // Define an array of 24 locations with their details
+        const locations = [
+            {
+                name: 'Ajanta',
+                lat: 20.552121457954172,
+                lng: 75.70326283316577,
+                images: ['./public/ajanta-caves-1@2x.png'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Ajanta+Caves,+Maharashtra/@19.5327332,73.4573457,8z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bd97f7014a75e43:0x7ca8d7c57639691f!2m2!1d75.7032521!2d20.5518603?entry=ttu',
+            },
+            {
+                name: 'Ellora',
+                lat: 20.02698596457445,
+                lng: 75.17709763203767,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Ellora+Caves,+Aurangabad,+Maharashtra/@19.2652084,73.8747045,9z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bdb93bd138ae4bd:0x574c6482cf0b89cf!2m2!1d75.1770869!2d20.0267844?entry=ttu',
+            },
+            {
+                name: 'gatewayofindia',
+                lat: 18.922288537751086,
+                lng: 72.83456847337078,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Gateway+Of+India+Mumbai,+Gateway+of+India,+Apollo+Bandar,+Colaba,+Mumbai,+Maharashtra/@18.871275,73.0127308,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3be7d1c73a0d5cad:0xc70a25a7209c733c!2m2!1d72.8346543!2d18.9219841?entry=ttu',
+            },
+            {
+                name: 'elephanta',
+                lat: 18.966336594680577,
+                lng: 72.93124523428203,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Elephanta+Caves,+Gharapuri,+Maharashtra+400094/@18.871275,73.0127308,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3be7c5307da3602f:0xf4ab181b1aaef53f!2m2!1d72.9314864!2d18.9633474?entry=ttu',
+            },
+
+            {
+                name: 'shaniwarwada',
+                lat: 18.519657957488395,
+                lng: 73.85528531607027,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Shaniwar+Wada,+Shaniwar+Peth,+Pune,+Maharashtra/@18.5135378,73.8099469,14z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bc2c065144d8edf:0x3703b8095866c54b!2m2!1d73.8553175!2d18.5194647?entry=ttu',
+            },
+
+            {
+                name: 'raigad',
+                lat: 18.5158,
+                lng: 73.1822,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Raigad,+Maharashtra/@18.6541688,73.163096,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3be87a3bdbb4f38d:0x79e682d79cec729f!2m2!1d73.1821623!2d18.5157519?entry=ttu',
+            },
+
+            {
+                name: 'pratapgad',
+                lat: 17.9345,
+                lng: 73.5783,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Pratapgad+Fort,+Maan+Rd,+Hinjawadi,+Pune,+Maharashtra/@18.2125769,73.4153464,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bc2bb8fc57af9f1:0xcd7f0daa3666eb!2m2!1d73.5783218!2d17.9344533?entry=ttu',
+            },
+
+            {
+                name: 'shivneri',
+                lat: 19.1930,
+                lng: 73.8555,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Shivneri+Fort,+Junnar,+Maharashtra/@18.8557281,73.5596496,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bdd3f8514d939fd:0x9c181be126c73de1!2m2!1d73.8554675!2d19.1931086?entry=ttu',
+            },
+
+            {
+                name: 'Rajgad',
+                lat: 18.2466,
+                lng: 73.6822,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Rajgad+Fort,+Balekilla+Road,+Pune,+Maharashtra/@18.380219,73.5792601,11z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bc28fa3eb07c019:0xe2f323ba03aacd31!2m2!1d73.6822128!2d18.2466334?entry=ttu',
+            },
+            
+            {
+                name: 'Sindhudurg',
+                lat: 16.0434,
+                lng: 73.4610,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Sindhudurg,+Maharashtra/@17.3349357,72.5475636,8z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bc01b4960627317:0xbda348ffbc374f91!2m2!1d73.5594128!2d16.1668396?entry=ttu',
+            },
+
+            {
+                name: 'Vijaydurg',
+                lat: 16.5565,
+                lng: 73.3333,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Vijaydurg+Fort,+Maharashtra+State+Highway+4,+Fort,+Vijaydurg,+Maharashtra/@17.4905077,73.1549533,9z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bea8702f0a7ebbd:0xcf70c7b1cb4f970!2m2!1d73.3329709!2d16.5611757?entry=ttu',
+            },
+
+            {
+                name: 'Imagica',
+                lat:  18.7549,
+                lng: 73.4095,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Imagica+Water+park,+Bazarpeth,+Laxminagar,+Khopoli,+Maharashtra/@18.6478061,73.4100697,11z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3be807d842419c01:0xc03f64e2bae8c5d3!2m2!1d73.3438704!2d18.7888826?entry=ttu',
+            },
+
+
+            {
+                name: 'Wet N Joy',
+                lat:  18.76267303309685,
+                lng:  73.51513673706711,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Wet+N+Joy+Waterpark+%26+Amusement+Park,+Mundhaware,+Maharashtra/@18.6371167,73.4520659,11z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bc2abb216646867:0x13c74f32bdfc2c55!2m2!1d73.5140102!2d18.7625715?entry=ttu',
+            },
+
+            {
+                name: 'Snow World',
+                lat:  19.086883880033646,
+                lng:  72.88847470168362,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Snow+World,+Lal+Bahadur+Shastri+Marg,+Kamani,+Kurla+West,+Jn,+Mumbai,+Maharashtra/@18.7991364,73.0116332,10z/data=!3m2!4b1!5s0x3be7c8878a6ce00d:0x5d860d2b1c221f12!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3be7c87d6081e507:0x9485f696735c7a97!2m2!1d72.8885498!2d19.0866203?entry=ttu',
+            },
+
+            {
+                name: 'Koyna Wild Life Sanctury',
+                lat: 17.769265786501325,
+                lng:  73.74217690398875,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Koyna+Wildlife+Sanctuary,+Koyananagar,+Koyna,+Maharashtra/@18.7991364,73.0116332,10z/data=!3m1!5s0x3be7c8878a6ce00d:0x5d860d2b1c221f12!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bc26db900008b51:0xebf3979d1af2cb85!2m2!1d73.7421018!2d17.769133?entry=ttu',
+            },
+
+            {
+                name: 'Nagzira Wildlife Sanctuary',
+                lat:  21.248409648546648,
+                lng:  79.98660133295672,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Nagzira+Sanctuary,+Maharashtra/@19.8575403,74.262866,7z/data=!3m2!4b1!5s0x3be7c8878a6ce00d:0x5d860d2b1c221f12!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3a2b0dd6154872d9:0x2237906e2e31c303!2m2!1d79.9865906!2d21.2481697?entry=ttu',
+            },
+
+            {
+                name: 'Tadoba',
+                lat:  20.272130636243446,
+                lng:  79.38832162998145,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Tadoba-Andhari+Tiger+Reserve,+Maharashtra/@19.6371901,73.9508416,7z/data=!3m2!4b1!5s0x3be7c8878a6ce00d:0x5d860d2b1c221f12!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3a2ccd16b6538703:0x418b2e1575b004d1!2m2!1d79.3875706!2d20.2717885?entry=ttu',
+            },
+
+
+
+            {
+                name: 'Trambakeshwar',
+                lat:  19.9332,
+                lng:  73.5252,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Trimbakeshwar+Jyotirling+Temple,+Trimbak,+Maharashtra/@19.2491207,73.2112927,9z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bddeb013af2e74b:0x716282a3a46b04cc!2m2!1d73.5308182!2d19.9322293?entry=ttu',
+            },
+
+            {
+                name: 'Shirdi',
+                lat:  19.7662,
+                lng:  74.4774,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Shirdi,+Maharashtra/@19.1341041,73.480221,9z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bdc5ba7461768af:0xd802d2c2943c99c!2m2!1d74.4762124!2d19.7645364?entry=ttu',
+            },
+
+            {
+                name: 'ISKON NVCC Pune',
+                lat:  18.4478318,
+                lng:  73.8806598,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/ISKCON+NVCC,+Katraj+-+Kondhwa+Road,+Tilekar+Nagar,+Kondhwa+Budruk,+Pune,+Maharashtra/@18.4807939,73.7931027,13z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bc2eafba92dd749:0x5eba1b5bbe09d7ee!2m2!1d73.880877!2d18.4487163?entry=ttu  ',
+            },
+
+            {
+                name: 'Bhimashankar',
+                lat:  19.0707,
+                lng:  73.5294,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Bhimashankar_jyotirlinga,+Bhimashankar,+Nigdale,+Maharashtra/@18.7982711,73.4096834,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bdd59fec9f5aab5:0x72883bb2a973dfad!2m2!1d73.5359402!2d19.071939?entry=ttu',
+            },
+
+            {
+                name: 'Shani Shinganapur',
+                lat:  19.3860,
+                lng:  74.4754,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Shani+Shingnapur,+Maharashtra/@18.9433216,74.012902,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3bdc9947273cd64f:0x8fa72555d843e2f3!2m2!1d74.8581505!2d19.3809105?entry=ttu',
+            },
+
+            {
+                name: 'Siddhivinayak Temple',
+                lat:  19.0177,
+                lng:  72.8304,
+                images: ['image1.jpg', 'image2.jpg'], // Add image URLs here
+                directionsLink: 'https://www.google.com/maps/dir/18.5139471,73.806616/Siddhi+vinayak+temple,+SK+Bole+Marg,+Lotus+Colony,+Prabhadevi,+Mumbai,+Maharashtra/@18.7882584,72.9787646,10z/data=!3m1!4b1!4m9!4m8!1m1!4e1!1m5!1m1!1s0x3be7cf9cd86fa6a9:0xb457e2d90bccd830!2m2!1d72.8143596!2d18.9926436?entry=ttu',
+            },
+            // Add the other 23 locations here
+        ];
+
+        // Initialize the map
+        function initMap() {
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: 15.8515, lng: 75.7139 }, // Default center
+                zoom: 7, // Default zoom level
+            });
+
+            // Get the user's current location (if allowed)
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition((position) => {
+                    const userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+
+                    // Create a marker for the user's current location
+                    new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: 'Your Location'
+                    });
+
+                    // Loop through your locations and create markers and info windows
+                    locations.forEach((location, index) => {
+                        const marker = new google.maps.Marker({
+                            position: { lat: location.lat, lng: location.lng },
+                            map: map,
+                            title: location.name
+                        });
+
+                        // Create an info window for each location
+                        const infoWindow = new google.maps.InfoWindow({
+                            content: `
+                                <h2>${location.name}</h2>
+                                <img src="${location.images[0]}" width="100" height="100">
+                                <img src="${location.images[1]}" width="100" height="100">
+                                <p><a href="${location.directionsLink}" target="_blank">Get Directions</a></p>
+                            `,
+                        });
+
+                        // Open the info window when the marker is clicked
+                        marker.addListener('click', () => {
+                            infoWindow.open(map, marker);
+                        });
+                    });
+                });
+            }
+        }
+    </script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQMHa6FlzJt4FubHeP5UIoT6_5kZaUUJE&callback=initMap&v=weekly"
+    defer>
+  </script>
+</body>
+</html>

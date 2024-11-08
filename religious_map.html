@@ -1,0 +1,338 @@
+<html>
+    <head>
+      <title>Heritage Site</title>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+      <link rel="stylesheet" href="index.css">
+      <link rel="icon" type="image/png" href="Images/fevicon.png">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+      <style>
+          /* Set the size of the div element that contains the map */
+  #map {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 110%;
+            height: 1200px;
+  }
+
+
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.hero{
+    background: #1d2026;    
+    min-height: 8vh;
+    width: 100%;
+    color: #fff;
+    position: relative;
+    padding-top: 0px;
+}
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    align-content: center;
+    background-color:#4E362F; /* Adjust as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow if desired */
+    z-index: 1000; /* Ensure the header is above other content */
+    height: 40px;
+}
+nav{
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    text-align: center;
+}
+
+nav h3{
+    height: 40px;
+    align-items: center;
+    align-self: center;
+
+}
+
+h3{
+    align-items: center;
+}
+
+nav h3 b{
+    align-content: center;
+}
+
+nac ul{
+    flex: 1;
+    text-align: right;
+
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 0 20px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+
+html{
+    background-color:#4E362F;
+}
+
+h3{  
+    background-color: #4E362F;
+    color:rgb(250, 250, 250);
+    text-align: center;
+    font-size: larger;
+}
+div.container{
+    align-items: center;
+}
+h5{
+    color:rgb(250, 250, 250);
+    text-align: center;
+    align-items: baseline;
+    padding: auto;
+
+
+    
+}
+
+header{
+    height: 40px;
+    align-items: center;
+    font-size: larger;
+}
+
+
+a{
+    text-align: center;
+    padding-left:200px ;
+    padding-top: 20px;
+    margin-top: 20px;
+    
+}
+
+img{
+    height: 100px;
+    width: 100px;
+    padding: auto;
+    align-items: center;
+}
+
+h5{
+    color: black;
+    text-align: center;
+    padding-left:50px ;
+
+}
+
+#map{
+      padding: 280px;
+}
+
+
+
+
+
+      </style>
+  
+  
+    <script>
+      // Initialize and add the map
+  function initMap() {
+    // The locations of Maharashtra
+
+    var maharashtra = { lat: 19.7515, lng:  75.7139};
+    var trimbakeshwar = { lat: 19.9332, lng: 73.5252 };
+    var shirdi = { lat: 19.7662, lng: 74.4774 };
+    var ISKON = { lat: 18.4478318, lng: 73.8806598 };
+    var Bhimashankar = { lat: 19.0707, lng: 73.5294 };
+    var Shani_Shinganapur = { lat: 19.3860, lng: 74.4754 };
+    var siddhivinayak = { lat: 19.0177, lng: 72.8304 };
+
+
+    // The map, centered at Maharastra
+    var map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 6.5,
+      center: maharashtra,
+    });
+    // The marker, positioned at Raigad
+    var marker = new google.maps.Marker({
+      position: trimbakeshwar ,
+      map: map,
+  
+    });
+
+    //info window for raigad
+    var infoWindow = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;"><img src="./public/gallery-trimbakeshwar-mandir-day2-thumb.svg" style="display: block; margin: 0 auto;"><h5><a href="raigad.html"><h4 class="none"><b>Trambakeshwar</b></h4></a></h5><p>The Shri Trimbakeshwar Shiva Temple is an ancient Hindu temple in the town of Trimbak</p></div>'
+      
+  
+    });
+
+    //listner for raigad    
+    marker.addListener('click', function() {
+      infoWindow.open(map, marker)
+    } );
+
+    
+  
+    //marker postioned at pratapgad
+    var marker2 = new google.maps.Marker({
+      position: shirdi,
+      map: map,
+    
+    });   
+    var infoWindow2 = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;"><img src="./public/Shirdi-Sai-Baba-Temple-To-Be-Shutdown-Indefinitely-From-May-1.svg" style="display: block; margin: 0 auto;"><h5><a href="pratapgad.html"><h4 class="none"><b>Shirdi</b></h4></a></h5><p>It is known for the former home revered spiritual leader Sai Baba, and as a major pilgrimage site</p></div>'
+  
+    });
+
+    marker2.addListener('click', function() {
+      infoWindow2.open(map, marker2)
+    } );
+
+     
+
+    //marker positioned at shivneri
+    var marker3 = new google.maps.Marker({
+      position: ISKON,
+      map: map,
+    
+    }); 
+    
+    var infoWindow3 = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;"><img src="./public/iskcon-nvcc-temple.svg" style="display: block; margin: 0 auto;"><h5><a href="shivneri.html"><h4 class="none"><b>ISKON NVCC Pune</b></h4></a></h5><p>The temple complex has two temples- the main Radha Krishna temple and the Venkateswara (Balaji) temple.</p></div>'
+  
+    });
+
+    marker3.addListener('click', function() {
+      infoWindow3.open(map, marker3)
+    } );
+
+
+
+
+
+    //marker positioned at rajgad
+    var marker4 = new google.maps.Marker({
+      position: Bhimashankar,
+      map: map,
+    
+    });   
+    var infoWindow4 = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;"><img src="./public/263971748Pune_Bhimshankar_Main.svg" style="display: block; margin: 0 auto;"><h5><a href="rajgad.html"><h4 class="none"><b>Bhimashankar</b></h4></a></h5><p>The Bhimashankar Mandir is a Shiva mandir situated in its eponymous village, Bhimashankar, in Pune district of Maharashtra.</p></div>'
+  
+    });
+
+
+    marker4.addListener('click', function() {
+      infoWindow4.open(map, marker4)
+    } );
+
+  
+     
+    //marker positioned at sindhudurg
+    var marker5 = new google.maps.Marker({
+      position: Shani_Shinganapur,
+      map: map,
+    
+    });   
+    var infoWindow5 = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;" background-color: #F0F0F0; color: #333;"><img src="./public/shani shingnapur.svg" style="display: block; margin: 0 auto;"><h5><a href="sindhudurg.html" style="color: #007bff;><h4 class="none"><b>Shani Shinganapur</b></h4></a></h5><p style="margin: 10px;">The village is known for its popular temple of Shani, the Hindu god associated with the planet Saturn.</p></div>'
+  
+    });
+
+    marker5.addListener('click', function() {
+      infoWindow5.open(map, marker5)
+    } );
+
+
+     
+    
+    //marker positoned at vijaydurg
+    var marker6 = new google.maps.Marker({
+      position: siddhivinayak,
+      map: map,
+      
+    });   
+    var infoWindow6 = new google.maps.InfoWindow({
+    content: '<div style="text-align: center;"><img src="./public/siddhivinayak-temple-mumbai.svg" style="display: block; margin: 0 auto;"><h4 class="none"><a href="vijaydurg.html">Siddhivinayak Temple</a></h4><p>The Shri Siddhivinayak Ganapati Mandir is a Hindu temple dedicated to Ganesha located in Mumbai, India</p></div>'
+});
+
+
+
+
+  
+  
+   
+    marker6.addListener('click', function() {
+      infoWindow6.open(map, marker6)
+    } );
+  }
+  
+  
+  
+  window.initMap = initMap;
+  
+  
+  
+    </script>
+  
+   
+    </head>
+    <body>
+      
+      <header class="sticky-header">
+        <h3><b>Religious & Spiritual Places</b></h3>
+      </header> 
+      
+     <!-- <div class="hero">
+        <nav>
+          <ul>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Modern</a></li>
+            <li><a href="#">Contemptory</a></li>
+            <li><a href="#">Affordable</a></li>
+          </ul>
+          
+        </nav>
+      </div> 
+      -->
+
+      <!--The div element for the map -->
+      <div id="map"></div>
+      
+  
+  
+      <!-- 
+       The `defer` attribute causes the callback to execute after the full HTML
+       document has been parsed. For non-blocking uses, avoiding race conditions,
+       and consistent behavior across browsers, consider loading using Promises
+       with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+      -->
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQMHa6FlzJt4FubHeP5UIoT6_5kZaUUJE&callback=initMap&v=weekly"
+        defer>
+      </script>
+
+      <footer>
+        hello this is footer
+      </footer>
+
+           
+      
+      
+
+    </body>
+  </html>

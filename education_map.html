@@ -1,0 +1,338 @@
+<html>
+    <head>
+      <title>Heritage Site</title>
+      <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+      <link rel="stylesheet" href="index.css">
+      <link rel="icon" type="image/png" href="Images/fevicon.png">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+      <style>
+          /* Set the size of the div element that contains the map */
+  #map {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 110%;
+            height: 1200px;
+  }
+
+
+  *{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.hero{
+    background: #1d2026;    
+    min-height: 8vh;
+    width: 100%;
+    color: #fff;
+    position: relative;
+    padding-top: 0px;
+}
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    align-content: center;
+    background-color:#4E362F; /* Adjust as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow if desired */
+    z-index: 1000; /* Ensure the header is above other content */
+    height: 40px;
+}
+nav{
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    text-align: center;
+}
+
+nav h3{
+    height: 40px;
+    align-items: center;
+    align-self: center;
+
+}
+
+h3{
+    align-items: center;
+}
+
+nav h3 b{
+    align-content: center;
+}
+
+nac ul{
+    flex: 1;
+    text-align: right;
+
+}
+
+nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 0 20px;
+}
+
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+}
+
+
+html{
+    background-color:#4E362F;
+}
+
+h3{  
+    background-color: #4E362F;
+    color:rgb(250, 250, 250);
+    text-align: center;
+    font-size: larger;
+}
+div.container{
+    align-items: center;
+}
+h5{
+    color:rgb(250, 250, 250);
+    text-align: center;
+    align-items: baseline;
+    padding: auto;
+
+
+    
+}
+
+header{
+    height: 40px;
+    align-items: center;
+    font-size: larger;
+}
+
+
+a{
+    text-align: center;
+    padding-left:200px ;
+    padding-top: 20px;
+    margin-top: 20px;
+    
+}
+
+img{
+    height: 100px;
+    width: 100px;
+    padding: auto;
+    align-items: center;
+}
+
+h5{
+    color: black;
+    text-align: center;
+    padding-left:50px ;
+
+}
+
+#map{
+      padding: 280px;
+}
+
+
+
+
+
+      </style>
+  
+  
+    <script>
+      // Initialize and add the map
+  function initMap() {
+    // The locations of Maharashtra
+
+    var maharashtra = { lat: 19.7515, lng:  75.7139};
+    var ajanta = { lat: 20.552121457954172, lng: 75.70326283316577 };
+    var ellora = { lat: 20.02698596457445, lng: 75.17709763203767 };
+    var gatewayofindia = { lat: 18.922288537751086, lng: 72.83456847337078 };
+    var elephanta = { lat: 18.966336594680577, lng: 72.93124523428203 };
+    var agakhan = { lat: 18.55277896093142, lng: 73.90148849086928 };
+    var shaniwarwada = { lat: 18.519657957488395, lng: 73.85528531607027 };
+
+
+    // The map, centered at Maharastra
+    var map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 6.5,
+      center: maharashtra,
+    });
+    // The marker, positioned at Raigad
+    var marker = new google.maps.Marker({
+      position: ajanta,
+      map: map,
+  
+    });
+
+    //info window for raigad
+    var infoWindow = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;"><img src="./public/image 3.png" style="display: block; margin: 0 auto;"><h5><a href="./ajanta.html"><h4 class="none"><b>Ajanta Caves</b></h4></a></h5><p>The Ajanta Caves are 29 rock-cut Buddhist cave monuments dating from the second century BCE to about 480 CE in the Aurangabad District of Maharashtra state in India.</p></div>'
+      
+  
+    });
+
+    //listner for raigad    
+    marker.addListener('click', function() {
+      infoWindow.open(map, marker)
+    } );
+
+    
+  
+    //marker postioned at pratapgad
+    var marker2 = new google.maps.Marker({
+      position: ellora,
+      map: map,
+    
+    });   
+    var infoWindow2 = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;"><img src="./public/image 4.png" style="display: block; margin: 0 auto;"><h5><a href="./ellora.html"><h4 class="none"><b>Ellora Caves</b></h4></a></h5><p>Ellora Caves, Ellora also spelled Elura, a series of 34 magnificent rock-cut temples in northwest-central Maharashtra state, western India.</p></div>'
+  
+    });
+
+    marker2.addListener('click', function() {
+      infoWindow2.open(map, marker2)
+    } );
+
+     
+
+    //marker positioned at shivneri
+    var marker3 = new google.maps.Marker({
+      position: gatewayofindia,
+      map: map,
+    
+    }); 
+    
+    var infoWindow3 = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;"><img src="./public/image 5.png" style="display: block; margin: 0 auto;"><h5><a href="./gateway.html"><h4 class="none"><b>Gate Way of India</b></h4></a></h5><p>The Gateway of India is an arch-monument completed in 1924 on the waterfront of Mumbai, India.</p></div>'
+  
+    });
+
+    marker3.addListener('click', function() {
+      infoWindow3.open(map, marker3)
+    } );
+
+
+
+
+
+    //marker positioned at rajgad
+    var marker4 = new google.maps.Marker({
+      position: elephanta,
+      map: map,
+    
+    });   
+    var infoWindow4 = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;"><img src="./public/image 6.png" style="display: block; margin: 0 auto;"><h5><a href="./elephanta.html"><h4 class="none"><b>Elephanta Caves</b></h4></a></h5><p>The Elephanta Caves are a collection of cave temples predominantly dedicated to the Hindu god Shiva, which have been designated a UNESCO World Heritage Site.</p></div>'
+  
+    });
+
+
+    marker4.addListener('click', function() {
+      infoWindow4.open(map, marker4)
+    } );
+
+  
+     
+    //marker positioned at sindhudurg
+    var marker5 = new google.maps.Marker({
+      position: agakhan,
+      map: map,
+    
+    });   
+    var infoWindow5 = new google.maps.InfoWindow({
+      content: '<div style="text-align: center;" background-color: #F0F0F0; color: #333;"><img src="./public/image 7.png" style="display: block; margin: 0 auto;"><h5><a href="./agakhan.html" ><h4 class="none"><b>Agakhan Palace</b></h4></a></h5><p style="margin: 10px;">The Aga Khan Palace was built by Sultan Muhammed Shah Aga Khan III in the city of Pune, India.</p></div>'
+  
+    });
+
+    marker5.addListener('click', function() {
+      infoWindow5.open(map, marker5)
+    } );
+
+
+     
+    
+    //marker positoned at vijaydurg
+    var marker6 = new google.maps.Marker({
+      position: shaniwarwada,
+      map: map,
+      
+    });   
+    var infoWindow6 = new google.maps.InfoWindow({
+    content: '<div style="text-align: center;"><img src="./public/image 8.png" style="display: block; margin: 0 auto;"><h4 class="none"><a href="./shaniwarwada.html">Shaniwar Wada</a></h4><p>Shaniwar Wada is a historical fortification in the city of Pune, India. Built in 1732, it was the great seat of the Peshwas of the Maratha Empire until 1818.</p></div>'
+});
+
+
+
+
+  
+  
+   
+    marker6.addListener('click', function() {
+      infoWindow6.open(map, marker6)
+    } );
+  }
+  
+  
+  
+  window.initMap = initMap;
+  
+  
+  
+    </script>
+  
+   
+    </head>
+    <body>
+      
+      <header class="sticky-header">
+        <h3><b>Educational Sites</b></h3>
+      </header> 
+      
+     <!-- <div class="hero">
+        <nav>
+          <ul>
+            <li><a href="#">Latest</a></li>
+            <li><a href="#">Modern</a></li>
+            <li><a href="#">Contemptory</a></li>
+            <li><a href="#">Affordable</a></li>
+          </ul>
+          
+        </nav>
+      </div> 
+      -->
+
+      <!--The div element for the map -->
+      <div id="map"></div>
+      
+  
+  
+      <!-- 
+       The `defer` attribute causes the callback to execute after the full HTML
+       document has been parsed. For non-blocking uses, avoiding race conditions,
+       and consistent behavior across browsers, consider loading using Promises
+       with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+      -->
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQMHa6FlzJt4FubHeP5UIoT6_5kZaUUJE&callback=initMap&v=weekly"
+        defer>
+      </script>
+
+      <footer>
+        hello this is footer
+      </footer>
+
+           
+      
+      
+
+    </body>
+  </html>
